@@ -8,21 +8,28 @@ import {
 import db from '.';
 // import OtherModel from './OtherModel';
 
-class Example extends Model<InferAttributes<Example>,
-InferCreationAttributes<Example>> {
+class SequelizeTeam extends Model<InferAttributes<SequelizeTeam>,
+InferCreationAttributes<SequelizeTeam>> {
   declare id: CreationOptional<number>;
+
+  declare teamName: string;
 }
 
-Example.init({
+SequelizeTeam.init({
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
+  teamName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: 'team_name',
+  },
 }, {
   sequelize: db,
-  modelName: 'trybeEval',
+  modelName: 'teams',
   timestamps: false,
 });
 
@@ -34,7 +41,7 @@ Example.init({
 // OtherModel.belongsTo(Example, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
 // OtherModel.belongsTo(Example, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
 
-// Example.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
-// Example.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
+// SequelizeTeam.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
+// SequelizeTeam.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
-export default Example;
+export default SequelizeTeam;
