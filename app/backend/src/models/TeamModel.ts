@@ -8,4 +8,9 @@ export default class TeamModel {
     const dBResponse = await this.model.findAll();
     return dBResponse;
   }
+
+  async getById(id: string): Promise<ITeam | null> {
+    const dBResponse = await this.model.findByPk(id);
+    return dBResponse;
+  }
 }

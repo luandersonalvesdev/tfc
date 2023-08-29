@@ -10,7 +10,12 @@ export default class TeamController {
 
   public async getAll(req: Request, res: Response) {
     const { status, data } = await this.teamService.getAll();
-    if (status !== 'SUCCESSFUL') return res.status(mapStatusHTTP(status)).json(data);
+    res.status(mapStatusHTTP(status)).json(data);
+  }
+
+  public async getById(req: Request, res: Response) {
+    const { id } = req.params;
+    const { status, data } = await this.teamService.getById(id);
     res.status(mapStatusHTTP(status)).json(data);
   }
 }
