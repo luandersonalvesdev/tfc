@@ -1,4 +1,4 @@
-import { sign, verify } from 'jsonwebtoken';
+import { JwtPayload, sign, verify } from 'jsonwebtoken';
 import { JwtPayloadLogin } from '../Interfaces/Jwt';
 
 const secret = process.env.JWT_SECRET || 'secret';
@@ -9,11 +9,11 @@ const generateToken = (payload: JwtPayloadLogin) =>
 const getPayload = (token: string) => {
   const [, trueToken] = token.split(' ');
   try {
-    const payload = verify(trueToken, secret);
-    return payload;
+    const { role } = verify(trueToken, secret) as JwtPayload;
+    return { data: { role } };
   } catch (error) {
     console.log(error);
-    return 'invalid token';
+    return { data: { message: 'Token must be a valid token' } };
   }
 };
 
