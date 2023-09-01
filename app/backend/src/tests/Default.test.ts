@@ -5,15 +5,15 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 
-import { Response } from 'superagent';
-import { mockAllTeams, mockTeamById } from './mocks/Team.mock';
-import SequelizeTeam from '../database/models/SequelizeTeam';
+import mapStatusHTTP from '../utils/mapStatusHTTP';
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
 
 describe('GET default route', () => {
+  afterEach(sinon.restore);
+
   it('GET Healthy', async () => {
     const {status, body} = await chai.request(app).get('/');
 
@@ -22,11 +22,14 @@ describe('GET default route', () => {
     expect(body.ok).to.be.equal(true);
   });
 
-  it('Internal server error', async () => {
-    const {status, body} = await chai.request(app).get('/');
+  it('DEFAULT return of mapStatusHTTP.', async () => {
+    const consoleStub = sinon.stub(console, 'error');
 
-    expect(status).to.be.equal(200);
-    expect(body).to.haveOwnProperty('ok');
-    expect(body.ok).to.be.equal(true);
+    const unknownStatus = 'UNKNOWN_STATUS';
+    const result = mapStatusHTTP(unknownStatus);
+
+    expect(result).to.equal(500);
+
+    expect(consoleStub.calledWith(`Status desconhecido: ${unknownStatus}`)).to.be.false;
   });
 });
