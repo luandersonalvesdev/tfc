@@ -18,8 +18,7 @@ export default class LoginService {
     if (error || !userFromDb || !bcrypt.compareSync(userData.password, userFromDb.password)) {
       return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
     }
-
-    const payload = { username: userFromDb.username, id: userFromDb.id };
+    const { password, ...payload } = userFromDb;
     const token = generateToken(payload);
     return { status: 'SUCCESSFUL', data: { token } };
   }

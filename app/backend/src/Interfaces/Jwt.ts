@@ -1,6 +1,8 @@
 export type JwtPayloadLogin = {
-  id: number;
-  username: string;
+  id: number,
+  username: string,
+  role: string,
+  email: string,
 };
 
 export type JwtTokenReturn = {
