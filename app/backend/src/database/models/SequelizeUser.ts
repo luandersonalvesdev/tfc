@@ -26,26 +26,22 @@ SequelizeUser.init({
   username: {
     type: DataTypes.STRING,
     allowNull: false,
-    field: 'team_name',
   },
   role: {
     type: DataTypes.STRING,
     allowNull: false,
-    field: 'team_name',
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    field: 'team_name',
   },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
-    field: 'team_name',
   },
 }, {
   sequelize: db,
-  modelName: 'teams',
+  modelName: 'users',
   timestamps: false,
 });
 
