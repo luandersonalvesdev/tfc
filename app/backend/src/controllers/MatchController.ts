@@ -13,4 +13,10 @@ export default class MatchController {
     const { status, data } = await this.matchService.getAll(inProgress as string);
     res.status(mapStatusHTTP(status)).json(data);
   }
+
+  public async finishMatch(req: Request, res: Response) {
+    const { id } = req.params;
+    const { status, data } = await this.matchService.finishMatch(Number(id));
+    res.status(mapStatusHTTP(status)).json(data);
+  }
 }

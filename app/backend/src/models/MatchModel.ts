@@ -27,8 +27,18 @@ export default class MatchModel {
       ],
       where: whereCondition,
     });
-    console.log(dBResponse.length);
-
     return dBResponse;
+  }
+
+  getById(matchId: number): Promise<IMatch | null> {
+    return this.model.findByPk(matchId);
+  }
+
+  async finishMatch(matchId: number) {
+    await this.model.update({ inProgress: false }, {
+      where: {
+        id: matchId,
+      },
+    });
   }
 }
