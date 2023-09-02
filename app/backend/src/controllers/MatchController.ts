@@ -7,8 +7,10 @@ export default class MatchController {
     private matchService = new MatchService(),
   ) {}
 
-  public async getAll(_req: Request, res: Response) {
-    const { status, data } = await this.matchService.getAll();
+  public async getAll(req: Request, res: Response) {
+    let { inProgress } = req.query;
+    if (!inProgress) inProgress = '';
+    const { status, data } = await this.matchService.getAll(inProgress as string);
     res.status(mapStatusHTTP(status)).json(data);
   }
 }

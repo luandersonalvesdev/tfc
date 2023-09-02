@@ -7,8 +7,8 @@ export default class MatchService {
     private matchModel = new MatchModel(),
   ) {}
 
-  public async getAll(): Promise<ServiceResponse<IMatch[]>> {
-    const allTeams = await this.matchModel.getAll();
+  public async getAll(inProgress: string): Promise<ServiceResponse<IMatch[]>> {
+    const allTeams = await this.matchModel.getAll(inProgress);
     return { status: 'SUCCESSFUL', data: allTeams };
   }
 }
