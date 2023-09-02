@@ -10,6 +10,10 @@ class Validations {
         .json({ message: 'Token not found' });
     }
     const payload = getPayload(token);
+    if (payload.data.message) {
+      return res.status(mapStatusHTTP('UNAUTHORIZED'))
+        .json({ message: payload.data.message });
+    }
     req.body.payload = payload;
     next();
   }

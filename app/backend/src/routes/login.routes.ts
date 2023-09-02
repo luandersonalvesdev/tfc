@@ -15,10 +15,7 @@ router.post(
 router.get(
   '/role',
   Validations.validateToken,
-  (req: Request, res: Response) => {
-    if (req.body.payload.data.message) return res.status(401).json(req.body.payload.data);
-    res.status(200).json(req.body.payload.data);
-  },
+  (req: Request, res: Response) => res.status(200).json(req.body.payload.data),
 );
 
 export default router;
