@@ -1,5 +1,5 @@
 import SequelizeTeam from '../database/models/SequelizeTeam';
-import IMatch from '../Interfaces/Match';
+import IMatch, { INewScoreboard } from '../Interfaces/Match';
 import SequelizeMatch from '../database/models/SequelizeMatch';
 
 const stringToBool = (str: string) => {
@@ -36,6 +36,17 @@ export default class MatchModel {
 
   async finishMatch(matchId: number) {
     await this.model.update({ inProgress: false }, {
+      where: {
+        id: matchId,
+      },
+    });
+  }
+
+  async updateScoreboard(newScoreboard: INewScoreboard, matchId: number) {
+    await this.model.update({
+      homeTeamGoals: newScoreboard.homeTeamGoals,
+      awayTeamGoals: newScoreboard.awayTeamGoals,
+    }, {
       where: {
         id: matchId,
       },
