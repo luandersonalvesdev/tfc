@@ -1,5 +1,5 @@
 import SequelizeTeam from '../database/models/SequelizeTeam';
-import IMatch, { INewScoreboard } from '../Interfaces/Match';
+import IMatch, { INewMatch, INewScoreboard } from '../Interfaces/Match';
 import SequelizeMatch from '../database/models/SequelizeMatch';
 
 const stringToBool = (str: string) => {
@@ -51,5 +51,9 @@ export default class MatchModel {
         id: matchId,
       },
     });
+  }
+
+  async addNewMatch(newMatch: INewMatch) {
+    return this.model.create({ ...newMatch, inProgress: true });
   }
 }

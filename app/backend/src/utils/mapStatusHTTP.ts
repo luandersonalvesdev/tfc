@@ -4,6 +4,8 @@ export default function mapStatusHTTP(status: string): number {
     case 'NOT_FOUND': return 404;
     case 'BAD_REQUEST': return 400;
     case 'UNAUTHORIZED': return 401;
+    case 'UNPROCESSABLE_ENTITY': return 422;
+    case 'CREATED': return 201;
     default: return 500;
   }
 }

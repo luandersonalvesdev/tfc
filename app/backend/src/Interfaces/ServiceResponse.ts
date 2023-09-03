@@ -1,7 +1,10 @@
 export type ServiceMessage = { message: string };
 
 type ServiceResponseErrorType =
-  'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'CONFLICT' | 'BAD_REQUEST' | 'UNAUTHORIZED';
+  'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'CONFLICT' | 'BAD_REQUEST'
+  | 'UNAUTHORIZED' | 'UNPROCESSABLE_ENTITY' | 'CREATED';
+
+type ServiceResponseSuccessType = 'SUCCESSFUL' | 'CREATED';
 
 export type ServiceResponseError = {
   status: ServiceResponseErrorType,
@@ -9,7 +12,7 @@ export type ServiceResponseError = {
 };
 
 export type ServiceResponseSuccess<T> = {
-  status: 'SUCCESSFUL',
+  status: ServiceResponseSuccessType,
   data: T,
 };
 
