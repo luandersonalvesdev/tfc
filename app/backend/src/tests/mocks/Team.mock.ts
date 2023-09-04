@@ -29,3 +29,8 @@ export const mockTeamById = {
   id: 2,
   teamName: "Bahia",
 }
+
+export const mockSecondTeamById = {
+    id: 3,
+    teamName: "Vitória",
+}
