@@ -24,7 +24,7 @@ MSC (model, service and controller) software architecture and a normalized datab
   ```bash
   docker-compose up -d
   ```
-  ### Now you can use the route "localhost:3001/..."
+  ### Now you can use the route "localhost:3001/..." for back-end and "localhost:3000/..." for front-end
 <br>
 
 ---
